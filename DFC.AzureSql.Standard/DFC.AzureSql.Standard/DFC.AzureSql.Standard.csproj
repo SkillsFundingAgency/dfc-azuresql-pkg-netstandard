@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Package to use Azure SQL</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DFC.Common.Standard" Version="0.1.0" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.2.1" />
+  </ItemGroup>
+
+</Project>
