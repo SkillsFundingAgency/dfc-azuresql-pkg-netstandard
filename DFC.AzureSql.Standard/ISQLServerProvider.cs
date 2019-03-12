@@ -7,5 +7,6 @@ namespace DFC.AzureSql.Standard
     public interface ISQLServerProvider
     {
         Task<bool> UpsertResource(Document document, ILogger log, string commandText, string parameterName);
+        Task<bool> UpsertResource(string entity, ILogger log, string commandText, string parameterName);
     }
 }
