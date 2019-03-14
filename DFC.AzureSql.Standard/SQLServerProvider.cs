@@ -12,7 +12,7 @@ namespace DFC.AzureSql.Standard
     {
         private readonly ILoggerHelper _loggerHelper;
         private IDbConnection _dbConnection;
-        private string _sqlConnString = Environment.GetEnvironmentVariable("SQLConnString");
+        private readonly string _sqlConnString = Environment.GetEnvironmentVariable("SQLConnString");
         private readonly Guid _correlationId = Guid.NewGuid();
 
         public SQLServerProvider(ILoggerHelper loggerHelper)
@@ -34,7 +34,7 @@ namespace DFC.AzureSql.Standard
             catch (Exception ex)
             {
                 _loggerHelper.LogException(log, _correlationId, ex);
-                return false;
+                throw;
             }
         }
 
@@ -52,7 +52,7 @@ namespace DFC.AzureSql.Standard
             catch (Exception ex)
             {
                 _loggerHelper.LogException(log, _correlationId, ex);
-                return false;
+                throw;
             }
         }
 
@@ -71,6 +71,7 @@ namespace DFC.AzureSql.Standard
                     catch (Exception ex)
                     {
                         _loggerHelper.LogException(log, _correlationId, ex);
+                        throw;
                     }
                     finally
                     {
@@ -85,7 +86,7 @@ namespace DFC.AzureSql.Standard
             var dbParameter = command.CreateParameter();
             dbParameter.ParameterName = parameterName;            
             dbParameter.Direction = ParameterDirection.Input;
-            dbParameter.Value = document.ToString();
+            dbParameter.Value = document;
 
             return dbParameter;
         }
